@@ -13,8 +13,16 @@
 # class = "pageSeatPlan_ticketTypes--standard" -- tavaline pilet
 # class = "pageSeatPlan_ticketTypes--love" -- loveseat pilet
 
+# kõigepealt proovime cinamoni lehelt vajaliku info kätte saada
+
 from bs4 import BeautifulSoup
 import requests
 
+# request.get() abil saame veebilehe kätte
+source = requests.get("https://cinamonkino.com/tasku/").text
 
+# BeautifulSoup annab meile selle lehe html koodi
+soup = BeautifulSoup(source, 'lxml')
 
+# soup.prettify() teeb html koodile õiged taanded
+print(soup.prettify())
