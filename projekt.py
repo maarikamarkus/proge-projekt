@@ -19,6 +19,9 @@
 # class = "pageSeatPlan_ticketTypes--standard" -- tavaline pilet
 # class = "pageSeatPlan_ticketTypes--love" -- loveseat pilet
 
+# apollo kino - Kati
+# ekraan - Maarika
+
 # kõigepealt proovime cinamoni lehelt vajaliku info kätte saada
 
 from bs4 import BeautifulSoup
@@ -31,8 +34,8 @@ cinamon_src = requests.get("https://cinamonkino.com/tasku/ajakava/ee").text
 cinamon_kinokava = BeautifulSoup(cinamon_src, 'lxml')
 
 kavarida = cinamon_kinokava.find_all('div', class_="schedule__row")
-#kellaajad = soup.find_all('div', class_="schedule__time")
-#filmid = soup.find_all('div', class_="schedule__film__name")
+#kellaajad = cinamon_kinokava.find_all('div', class_="schedule__time")
+#filmid = cinamon_kinokava.find_all('div', class_="schedule__film__name")
 
 # sõnastik tänase kinokavaga, kellaaeg:film, näitab ainult täna veel tulevaid filme
 # ei tea, mis teeb siis, kui täna enam midagi kavas pole, ilmselt peab mingi erindi varianti kasutama
