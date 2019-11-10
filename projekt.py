@@ -4,7 +4,6 @@
 # samuti tuleb lisanda requests -- tools > manage packages.. > otsingusse requests > install
 # ja samamoodi lisada ka lxml
 # esialgne abistav info: https://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python
-# sellele moodulile tuleb ise URL-e sööta, siis teeb neist soup-objecti
 
 # https://www.youtube.com/watch?v=ng2o98k983k -- hea video beautifulsoupi kohta
 # https://www.youtube.com/watch?v=87Gx3U0BDlo -- veel head infot
