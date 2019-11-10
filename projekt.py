@@ -26,28 +26,30 @@
 from bs4 import BeautifulSoup
 import requests
 
+# cinamon
 # request.get() abil saame veebilehe kätte
 cinamon_src = requests.get("https://cinamonkino.com/tasku/ajakava/ee").text
 
 # BeautifulSoup annab meile selle lehe html koodi
 cinamon_kinokava = BeautifulSoup(cinamon_src, 'lxml')
 
-kavarida = cinamon_kinokava.find_all('div', class_="schedule__row")
-#kellaajad = cinamon_kinokava.find_all('div', class_="schedule__time")
-#filmid = cinamon_kinokava.find_all('div', class_="schedule__film__name")
+cinamon_kavarida = cinamon_kinokava.find_all('div', class_="schedule__row")
+#cinamon_kellaajad = cinamon_kinokava.find_all('div', class_="schedule__time")
+#cinamon_filmid = cinamon_kinokava.find_all('div', class_="schedule__film__name")
 
 # sõnastik tänase kinokavaga, kellaaeg:film, näitab ainult täna veel tulevaid filme
 # ei tea, mis teeb siis, kui täna enam midagi kavas pole, ilmselt peab mingi erindi varianti kasutama
 print("Cinamoni tänane kinokava: ")
-aeg_film = {}
-for rida in kavarida:
-    #print(rida)
-    kellaaeg = rida.find('div', class_="schedule__time")
-    film = rida.find('div', class_="schedule__film__name")
-    aeg_film[kellaaeg.text.strip()] = film.text.strip()
-for el in aeg_film:
-    print(el + " : " + aeg_film[el])
-#print(aeg_film)
+cinamon_aeg_film = {}
+for cinamon_rida in cinamon_kavarida:
+    #print(cinamon_rida)
+    cinamon_kellaaeg = cinamon_rida.find('div', class_="schedule__time")
+    cinamon_film = cinamon_rida.find('div', class_="schedule__film__name")
+    cinamon_aeg_film[cinamon_kellaaeg.text.strip()] = cinamon_film.text.strip()
+for cinamon_el in cinamon_aeg_film:
+    print(cinamon_el + " : " + cinamon_aeg_film[cinamon_el])
+#print(cinamon_aeg_film)
+print("\n")
 
 #filmid_hulk = set()
 #for film in filmid:
@@ -57,11 +59,27 @@ for el in aeg_film:
 #print(len(filmid_hulk))
 #print(filmide_arv)
     
-    
-    
-    
+# ekraan
+ekraan_src = requests.get("https://www.forumcinemas.ee/movies/showtimes").text
 
+ekraan_kinokava = BeautifulSoup(ekraan_src, 'lxml')
 
+ekraan_kavarida = ekraan_kinokava.find_all('div', class_="row show-list-item-inner")
+
+print("Kino Ekraani tänane kinokava on: ")
+ekraan_aeg_film = {}
+for ekraan_rida in ekraan_kavarida:
+    ekraan_kellaaeg = ekraan_rida.find('h2', class_="showTime").text.strip()
+    ekraan_film = ekraan_rida.find('span', class_="name-part").text.strip()
+    ekraan_aeg_film[ekraan_kellaaeg] = ekraan_film
+
+for ekraan_el in ekraan_aeg_film:
+    print(ekraan_el + " : " + ekraan_aeg_film[ekraan_el])
+    
+    
+    
+    
+    
 # otsime lingi, mille sisu on Kinokava ja siis võtame selle href-i väärtuse ka
 #for link in links:
 #    if "Kinokava" in link.text:
