@@ -51,13 +51,6 @@ for cinamon_el in cinamon_aeg_film:
 #print(cinamon_aeg_film)
 print("\n")
 
-#filmid_hulk = set()
-#for film in filmid:
-#    filmid_hulk.add(film.text.strip())
-
-#print(filmid_hulk)
-#print(len(filmid_hulk))
-#print(filmide_arv)
     
 # ekraan
 # ei ole kindel, et ta alati ekraani näitab, tundub, et vaatab arvuti asukoha järgi
@@ -87,3 +80,11 @@ for ekraan_el in ekraan_aeg_film:
 #    if "Kinokava" in link.text:
 #        print(link)
 #        print(link.attrs['href'])
+
+#filmid_hulk = set()
+#for film in filmid:
+#    filmid_hulk.add(film.text.strip())
+
+#print(filmid_hulk)
+#print(len(filmid_hulk))
+#print(filmide_arv)
