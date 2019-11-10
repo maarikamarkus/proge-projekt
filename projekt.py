@@ -60,6 +60,8 @@ print("\n")
 #print(filmide_arv)
     
 # ekraan
+# ei ole kindel, et ta alati ekraani näitab, tundub, et vaatab arvuti asukoha järgi
+# aadressis ei ole tartut ega ekraani märgitud, olgugi et näitab ekraani valikut
 ekraan_src = requests.get("https://www.forumcinemas.ee/movies/showtimes").text
 
 ekraan_kinokava = BeautifulSoup(ekraan_src, 'lxml')
@@ -85,6 +87,3 @@ for ekraan_el in ekraan_aeg_film:
 #    if "Kinokava" in link.text:
 #        print(link)
 #        print(link.attrs['href'])
-
-
-        
