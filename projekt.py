@@ -12,6 +12,7 @@
 # soup.prettify() teeb html koodile õiged taanded
 # status_code, kui == 200, siis saame ligi sellele lehele
 #print(source.status_code)
+# find_all, '...' leiab kõik ... sellelt lehelt
 
 # cinamon
 # class = "schedule__film__name" - kinokavas oleva filmi class, NB! 2 alakriipsu
@@ -24,25 +25,27 @@ from bs4 import BeautifulSoup
 import requests
 
 # request.get() abil saame veebilehe kätte
-source = requests.get("https://cinamonkino.com/tasku/ajakava/ee").text
+cinamon_src = requests.get("https://cinamonkino.com/tasku/ajakava/ee").text
 
 # BeautifulSoup annab meile selle lehe html koodi
-soup = BeautifulSoup(source, 'lxml')
+cinamon_kinokava = BeautifulSoup(cinamon_src, 'lxml')
 
-# find_all, '...' leiab kõik ... sellelt lehelt
-
-kavarida = soup.find_all('div', class_="schedule__row")
+kavarida = cinamon_kinokava.find_all('div', class_="schedule__row")
 #kellaajad = soup.find_all('div', class_="schedule__time")
 #filmid = soup.find_all('div', class_="schedule__film__name")
 
-# sõnastik tänase kinokavaga, kellaaeg:film
+# sõnastik tänase kinokavaga, kellaaeg:film, näitab ainult täna veel tulevaid filme
+# ei tea, mis teeb siis, kui täna enam midagi kavas pole, ilmselt peab mingi erindi varianti kasutama
+print("Cinamoni tänane kinokava: ")
 aeg_film = {}
 for rida in kavarida:
     #print(rida)
     kellaaeg = rida.find('div', class_="schedule__time")
     film = rida.find('div', class_="schedule__film__name")
     aeg_film[kellaaeg.text.strip()] = film.text.strip()
-print(aeg_film)
+for el in aeg_film:
+    print(el + " : " + aeg_film[el])
+#print(aeg_film)
 
 #filmid_hulk = set()
 #for film in filmid:
