@@ -1,2 +1,2 @@
 # proge-projekt
-Programm leidmaks soodsaimat kinokülastuse võimalust
+Programm Tartu kinode kava võrdlemiseks, potentsiaalselt odavaima külastuse leidmiseks.
