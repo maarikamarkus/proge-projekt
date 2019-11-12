@@ -70,10 +70,21 @@ for ekraan_rida in ekraan_kavarida:
 
 for ekraan_el in ekraan_aeg_film:
     print(ekraan_el + " : " + ekraan_aeg_film[ekraan_el])
-    
-    
-    
-    
+print("\n")
+
+
+#APOLLO
+apollo_src = requests.get("https://www.apollokino.ee").text
+
+apollo_kinokava = BeautifulSoup(apollo_src, 'lxml')
+
+apollo_kavarida = apollo_kinokava.find_all('h2', class_="list-item-desc-title")
+
+print("Kino Apollo tänane kinokava on: ")
+for apollo_rida in apollo_kavarida:
+    apollo_film = apollo_rida.find('a', href = True).text.strip()
+    print(apollo_film)
+
     
 # otsime lingi, mille sisu on Kinokava ja siis võtame selle href-i väärtuse ka
 #for link in links:
