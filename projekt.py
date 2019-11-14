@@ -23,6 +23,11 @@
 
 # kõigepealt proovime cinamoni lehelt vajaliku info kätte saada
 
+# edasised plaanid
+# saada kätte erinevate päevate kinokava info
+# ja siis võimaldada kasutajal valida, mis päeva kava tahab
+# kasutada tkinter moodulit 
+
 from bs4 import BeautifulSoup
 import requests
 
