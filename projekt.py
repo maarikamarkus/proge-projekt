@@ -26,7 +26,8 @@
 # edasised plaanid
 # saada kätte erinevate päevate kinokava info
 # ja siis võimaldada kasutajal valida, mis päeva kava tahab
-# kasutada tkinter moodulit 
+# kasutada tkinter moodulit
+# ja maarika püüab kuupäevade valiku teha
 
 from bs4 import BeautifulSoup
 import requests
