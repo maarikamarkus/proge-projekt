@@ -11,7 +11,6 @@
 # soup.prettify() teeb html koodile õiged taanded
 # status_code, kui == 200, siis saame ligi sellele lehele
 #print(source.status_code)
-# find_all, '...' leiab kõik ... sellelt lehelt
 
 # cinamon
 # class = "schedule__film__name" - kinokavas oleva filmi class, NB! 2 alakriipsu
@@ -29,8 +28,10 @@
 # kasutada tkinter moodulit
 # ja maarika püüab kuupäevade valiku teha
 
+
 from bs4 import BeautifulSoup
 import requests
+from tkinter import *
 
 # cinamon
 # request.get() abil saame veebilehe kätte
@@ -90,6 +91,47 @@ print("Kino Apollo tänane kinokava on: ")
 for apollo_rida in apollo_kavarida:
     apollo_film = apollo_rida.find('a', href = True).text.strip()
     print(apollo_film)
+    
+# GUI w/tkinter
+aken = Tk() # teeb tühja akna
+
+#silt = Label(aken, text="Tartu kinokavad") # igasuguse teksti kirjutamiseks Label()
+#silt.pack() # paneb labeli aknasse nähtavaks
+
+#ülemineRaam = Frame(aken)
+#ülemineRaam.pack() # teeb nähtavaks, by default paneb üksteise "otsa"
+#alumineRaam = Frame(aken)
+#alumineRaam.pack(side=BOTTOM)
+#
+#nupp1 = Button(ülemineRaam, text="Täna (nupp1)", fg="red")
+#nupp2 = Button(ülemineRaam, text="Homme (nupp2)", fg="blue")
+#nupp3 = Button(ülemineRaam, text="Ülehomme (nupp3)", fg="green")
+#nupp4 = Button(alumineRaam, text="vali kuupäev (nupp4)", fg="black")
+#
+#nupp1.pack(side=LEFT) # nii kaugele vasakule kui võimalik
+#nupp2.pack(side=LEFT)
+#nupp3.pack(side=LEFT)
+#nupp4.pack(side=BOTTOM)
+
+# https://www.youtube.com/watch?v=Ko4EPJ8DDjg
+# bg ehk background ehk taustavärv
+# fg ehk foreground ehk tekstivärv
+üks = Label(aken, text="Üks", bg="red", fg="white")
+üks.pack() # staatiline suurus
+kaks = Label(aken, text="kaks", bg="green", fg="black")
+kaks.pack(fill=X) # aknalaiuse suurune
+kolm = Label(aken, text="kolm", bg="blue", fg="white")
+kolm.pack(side=LEFT, fill=Y) # aknakõrguse suurune
+
+aken.mainloop() #infinite loop, et aken oleks koguaeg nähtav, kuniks ise sulged
+
+
+
+
+
+
+
+
 
     
 # otsime lingi, mille sisu on Kinokava ja siis võtame selle href-i väärtuse ka
