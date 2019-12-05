@@ -81,17 +81,34 @@ print("\n")
 
 
 #APOLLO
-apollo_src = requests.get("https://www.apollokino.ee").text
+#apollo_src = requests.get("https://www.apollokino.ee").text
 
-apollo_kinokava = BeautifulSoup(apollo_src, 'lxml')
+#apollo_kinokava = BeautifulSoup(apollo_src, 'lxml')
 
-apollo_kavarida = apollo_kinokava.find_all('h2', class_="list-item-desc-title")
+#apollo_kavarida = apollo_kinokava.find_all('h2', class_="list-item-desc-title")
 
-print("Kino Apollo tänane kinokava on: ")
-for apollo_rida in apollo_kavarida:
-    apollo_film = apollo_rida.find('a', href = True).text.strip()
-    print(apollo_film)
-    
+#print("Kino Apollo tänane kinokava on: ")
+#for apollo_rida in apollo_kavarida:
+#    apollo_film = apollo_rida.find('a', href = True).text.strip()
+#    print(apollo_film)
+
+#Filmi otsing
+
+film = input("Millise filmi kellaaegu sooviksid näha? ")
+
+for a in cinamon_aeg_film:
+    film1 = cinamon_aeg_film.get(a)
+    if film == film1:
+        print(a,":",film, "(Cinamon)")
+
+for a in ekraan_aeg_film:
+    film1 = ekraan_aeg_film.get(a)
+    if film == film1:
+        print(a,":",film, "(Ekraan)")
+
+
+
+
 # GUI w/tkinter
 aken = Tk() # teeb tühja akna
 
