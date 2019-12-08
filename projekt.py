@@ -94,51 +94,73 @@ print("\n")
 
 #Filmi otsing
 
-film = input("Millise filmi kellaaegu sooviksid näha? ")
-
-for a in cinamon_aeg_film:
-    film1 = cinamon_aeg_film.get(a)
-    if film == film1:
-        print(a,":",film, "(Cinamon)")
-
-for a in ekraan_aeg_film:
-    film1 = ekraan_aeg_film.get(a)
-    if film == film1:
-        print(a,":",film, "(Ekraan)")
-
+#film = input("Millise filmi kellaaegu sooviksid näha? ")
+#
+#for a in cinamon_aeg_film:
+#    film1 = cinamon_aeg_film.get(a)
+#    if film == film1:
+#        print(a,":",film, "(Cinamon)")
+#
+#for a in ekraan_aeg_film:
+#    film1 = ekraan_aeg_film.get(a)
+#    if film == film1:
+#        print(a,":",film, "(Ekraan)")
+#
 
 
 
 # GUI w/tkinter
 aken = Tk() # teeb tühja akna
 
+ülemineRaam = Frame(aken)
+ülemineRaam.pack() # teeb nähtavaks, by default paneb üksteise "otsa"
+alumineRaam = Frame(aken)
+alumineRaam.pack(side=BOTTOM)
+
+#kuupäevad = Button(ülemineRaam, tekst="Kuupäev", fg="white", bg="black")
+#kuupäevad.pack(fill=X)
+#kellaajad = Label(aken, text="Kell", fg="white", bg="blue")
+#kellaajad.pack(side=LEFT, fill=Y)
+
 #silt = Label(aken, text="Tartu kinokavad") # igasuguse teksti kirjutamiseks Label()
 #silt.pack() # paneb labeli aknasse nähtavaks
 
-#ülemineRaam = Frame(aken)
-#ülemineRaam.pack() # teeb nähtavaks, by default paneb üksteise "otsa"
-#alumineRaam = Frame(aken)
-#alumineRaam.pack(side=BOTTOM)
-#
-#nupp1 = Button(ülemineRaam, text="Täna (nupp1)", fg="red")
-#nupp2 = Button(ülemineRaam, text="Homme (nupp2)", fg="blue")
-#nupp3 = Button(ülemineRaam, text="Ülehomme (nupp3)", fg="green")
-#nupp4 = Button(alumineRaam, text="vali kuupäev (nupp4)", fg="black")
-#
-#nupp1.pack(side=LEFT) # nii kaugele vasakule kui võimalik
-#nupp2.pack(side=LEFT)
-#nupp3.pack(side=LEFT)
-#nupp4.pack(side=BOTTOM)
 
-# https://www.youtube.com/watch?v=Ko4EPJ8DDjg
+nupp1 = Button(ülemineRaam, text="Täna (nupp1)", fg="red")
+nupp2 = Button(ülemineRaam, text="Homme (nupp2)", fg="blue")
+nupp3 = Button(ülemineRaam, text="Ülehomme (nupp3)", fg="green")
+nupp4 = Button(ülemineRaam, text="vali kuupäev (nupp4)", fg="black")
+
+nupp1.grid(row=0, column=1) # nii kaugele vasakule kui võimalik
+nupp2.grid(row=0, column=2)
+nupp3.grid(row=0, column=3)
+nupp4.grid(row=0, column=4)
+
+kellaajad = Label(aken, text="Kell", fg="white", bg="blue")
+kellaajad.pack(side=LEFT, fill=Y)
+
 # bg ehk background ehk taustavärv
 # fg ehk foreground ehk tekstivärv
-üks = Label(aken, text="Üks", bg="red", fg="white")
-üks.pack() # staatiline suurus
-kaks = Label(aken, text="kaks", bg="green", fg="black")
-kaks.pack(fill=X) # aknalaiuse suurune
-kolm = Label(aken, text="kolm", bg="blue", fg="white")
-kolm.pack(side=LEFT, fill=Y) # aknakõrguse suurune
+#üks = Label(aken, text="Üks", bg="red", fg="white")
+#üks.pack() # staatiline suurus
+#kaks = Label(aken, text="kaks", bg="green", fg="black")
+#kaks.pack(fill=X) # aknalaiuse suurune
+#kolm = Label(aken, text="kolm", bg="blue", fg="white")
+#kolm.pack(side=LEFT, fill=Y) # aknakõrguse suurune
+
+#label_1 = Label(aken, text="Name")
+#label_2 = Label(aken, text="Password")
+#entry_1 = Entry(aken)
+#entry_2 = Entry(aken)
+#
+#label_1.grid(row=0, sticky=E)
+#label_2.grid(row=1, sticky=E)
+#
+#entry_1.grid(row=0, column=1)
+#entry_2.grid(row=1, column=1)
+#
+#c = Checkbutton(aken, text="Keep me logged in")
+#c.grid(columnspan=2)
 
 aken.mainloop() #infinite loop, et aken oleks koguaeg nähtav, kuniks ise sulged
 
