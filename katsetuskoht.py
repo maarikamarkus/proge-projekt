@@ -1,27 +1,3 @@
-# programmeerimise aine projekt
-# idee luua programm, mis leiab kõige odavama kinokülastuse variandi tartus
-# selleks kasutame lisandmoodulit beautifulsoup, mis tuleb eraldi endale lisada
-# samuti tuleb lisanda requests -- tools > manage packages.. > otsingusse requests > install
-# ja samamoodi lisada ka lxml
-# esialgne abistav info: https://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python
-
-# https://www.youtube.com/watch?v=ng2o98k983k -- hea video beautifulsoupi kohta
-# https://www.youtube.com/watch?v=87Gx3U0BDlo -- veel head infot
-
-# soup.prettify() teeb html koodile õiged taanded
-# status_code, kui == 200, siis saame ligi sellele lehele
-#print(source.status_code)
-
-# cinamon
-# class = "schedule__film__name" - kinokavas oleva filmi class, NB! 2 alakriipsu
-# class = "pageSeatPlan_ticketTypes--standard" -- tavaline pilet
-# class = "pageSeatPlan_ticketTypes--love" -- loveseat pilet
-
-# apollo kino - Kati
-# ekraan - Maarika
-
-# kõigepealt proovime cinamoni lehelt vajaliku info kätte saada
-
 from bs4 import BeautifulSoup
 import requests
 from tkinter import *
@@ -45,7 +21,6 @@ def cinamon_aeg_film(cinamon_src):
         print(cinamon_el + " : " + cinamon_aeg_film[cinamon_el])
     print("\n")
         
-# request.get() abil saame veebilehe kätte
 cinamon_src = requests.get("https://cinamonkino.com/tasku/ajakava/ee").text
 
 def cinamon():
@@ -75,37 +50,6 @@ def ekraan():
 #print("\n")
 
 
-
-
-#APOLLO
-#apollo_src = requests.get("https://www.apollokino.ee").text
-
-#apollo_kinokava = BeautifulSoup(apollo_src, 'lxml')
-
-#apollo_kavarida = apollo_kinokava.find_all('h2', class_="list-item-desc-title")
-
-#print("Kino Apollo tänane kinokava on: ")
-#for apollo_rida in apollo_kavarida:
-#    apollo_film = apollo_rida.find('a', href = True).text.strip()
-#    print(apollo_film)
-
-# Filmi otsing
-
-#film = input("Millise filmi kellaaegu sooviksid näha? ")
-#
-#for a in cinamon_aeg_film:
-#    film1 = cinamon_aeg_film.get(a)
-#    if film == film1:
-#        print(a,":",film, "(Cinamon)")
-#
-#for a in ekraan_aeg_film:
-#    film1 = ekraan_aeg_film.get(a)
-#    if film == film1:
-#        print(a,":",film, "(Ekraan)")
-#
-
-
-
 # GUI w/tkinter
 
 aken = Tk()
@@ -125,23 +69,3 @@ menüü.pack(side=TOP, fill=X)
 aken.mainloop()
 
 
-
-
-
-
-
-
-    
-# otsime lingi, mille sisu on Kinokava ja siis võtame selle href-i väärtuse ka
-#for link in links:
-#    if "Kinokava" in link.text:
-#        print(link)
-#        print(link.attrs['href'])
-
-#filmid_hulk = set()
-#for film in filmid:
-#    filmid_hulk.add(film.text.strip())
-
-#print(filmid_hulk)
-#print(len(filmid_hulk))
-#print(filmide_arv)
