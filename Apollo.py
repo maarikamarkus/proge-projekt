@@ -10,7 +10,7 @@ def apollo_aeg_film(apollo_src):
     for apollo_rida in apollo_kavarida:
         #print(apollo_rida)
         apollo_film = apollo_rida.find('h2', class_="list-item-desc-title")
-        apollo_filminimi = (apollo_film.find("a")).text.strip()
+        apollo_filminimi = sapollo_film.find("a").text.strip()
         #print(apollo_film)
         print(apollo_filminimi)
         apollo_kellaaeg = apollo_rida.find("div", class_="btn-group")

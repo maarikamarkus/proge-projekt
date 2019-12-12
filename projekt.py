@@ -3,24 +3,10 @@
 # selleks kasutame lisandmoodulit beautifulsoup, mis tuleb eraldi endale lisada
 # samuti tuleb lisanda requests -- tools > manage packages.. > otsingusse requests > install
 # ja samamoodi lisada ka lxml
-# esialgne abistav info: https://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python
-
-# https://www.youtube.com/watch?v=ng2o98k983k -- hea video beautifulsoupi kohta
-# https://www.youtube.com/watch?v=87Gx3U0BDlo -- veel head infot
-
-# soup.prettify() teeb html koodile õiged taanded
-# status_code, kui == 200, siis saame ligi sellele lehele
-#print(source.status_code)
-
-# cinamon
-# class = "schedule__film__name" - kinokavas oleva filmi class, NB! 2 alakriipsu
-# class = "pageSeatPlan_ticketTypes--standard" -- tavaline pilet
-# class = "pageSeatPlan_ticketTypes--love" -- loveseat pilet
 
 # apollo kino - Kati
 # ekraan - Maarika
-
-# kõigepealt proovime cinamoni lehelt vajaliku info kätte saada
+# cinamon - Maarika
 
 from bs4 import BeautifulSoup
 import requests
@@ -51,6 +37,7 @@ cinamon_src = requests.get("https://cinamonkino.com/tasku/ajakava/ee").text
 def cinamon():
     cinamon_aeg_film(cinamon_src)
 #print("\n")
+#cinamon_kava = cinamon()
 
 def ekraan_aeg_film(ekraan_src):
 
@@ -79,15 +66,16 @@ def ekraan():
 
 #APOLLO
 #apollo_src = requests.get("https://www.apollokino.ee").text
-
+#
 #apollo_kinokava = BeautifulSoup(apollo_src, 'lxml')
-
+#
 #apollo_kavarida = apollo_kinokava.find_all('h2', class_="list-item-desc-title")
-
+#
 #print("Kino Apollo tänane kinokava on: ")
 #for apollo_rida in apollo_kavarida:
 #    apollo_film = apollo_rida.find('a', href = True).text.strip()
 #    print(apollo_film)
+
 
 # Filmi otsing
 
@@ -116,7 +104,10 @@ silt.pack(side=TOP, fill=X)
 menüü = Frame(aken)
 
 cinamon = Button(menüü, text="Cinamoni kinokava", command=cinamon)
+cinamonkava = Label(menüü, text=cinamon)
 cinamon.pack(side=LEFT)
+
+
 ekraan = Button(menüü, text="Ekraani kinokava", command=ekraan)
 ekraan.pack(side=LEFT)
 
