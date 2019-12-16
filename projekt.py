@@ -11,6 +11,7 @@
 from bs4 import BeautifulSoup
 import requests
 from tkinter import *
+from tkinter.scrolledtext import ScrolledText
 
 def cinamon_aeg_film(cinamon_src):
     # BeautifulSoup annab meile selle lehe html koodi
@@ -20,7 +21,7 @@ def cinamon_aeg_film(cinamon_src):
     #cinamon_kellaajad = cinamon_kinokava.find_all('div', class_="schedule__time")
     #cinamon_filmid = cinamon_kinokava.find_all('div', class_="schedule__film__name")
 
-    print("Cinamoni tänane kinokava: ")
+    valjund = "Cinamoni tänane kinokava:\n"
     cinamon_aeg_film = {}
     for cinamon_rida in cinamon_kavarida:
         #print(cinamon_rida)
@@ -28,9 +29,10 @@ def cinamon_aeg_film(cinamon_src):
         cinamon_film = cinamon_rida.find('div', class_="schedule__film__name")
         cinamon_aeg_film[cinamon_kellaaeg.text.strip()] = cinamon_film.text.strip()
     for cinamon_el in cinamon_aeg_film:
-        print(cinamon_el + " : " + cinamon_aeg_film[cinamon_el])
-    print("\n")
-        
+        valjund += cinamon_el + " : " + cinamon_aeg_film[cinamon_el] + "\n"
+
+    tekstikast_asenda(valjund)
+
 # request.get() abil saame veebilehe kätte
 cinamon_src = requests.get("https://cinamonkino.com/tasku/ajakava/ee").text
 
@@ -44,7 +46,7 @@ def ekraan_aeg_film(ekraan_src):
     ekraan_kinokava = BeautifulSoup(ekraan_src, 'lxml')
     ekraan_kavarida = ekraan_kinokava.find_all('div', class_="row show-list-item-inner")
 
-    print("Kino Ekraani tänane kinokava on: ")
+    valjund = "Kino Ekraani tänane kinokava on:\n"
     ekraan_aeg_film = {}
     for ekraan_rida in ekraan_kavarida:
         ekraan_kellaaeg = ekraan_rida.find('h2', class_="showTime").text.strip()
@@ -52,9 +54,10 @@ def ekraan_aeg_film(ekraan_src):
         ekraan_aeg_film[ekraan_kellaaeg] = ekraan_film
 
     for ekraan_el in ekraan_aeg_film:
-        print(ekraan_el + " : " + ekraan_aeg_film[ekraan_el])
-    print("\n")
-        
+        valjund += ekraan_el + " : " + ekraan_aeg_film[ekraan_el] + "\n"
+
+    tekstikast_asenda(valjund)
+
 ekraan_src = requests.get("https://www.forumcinemas.ee/movies/showtimes").text
 
 def ekraan():
@@ -69,7 +72,8 @@ def apollo_aeg_film(apollo_src):
     apollo_kinokava = BeautifulSoup(apollo_src, 'lxml')
     apollo_kavarida = apollo_kinokava.find_all('div', class_="panel-body")
 
-    print("Kino Apollo Eedeni tänane kinokava on: ")
+    valjund = "Kino Apollo Eedeni tänane kinokava on:\n"
+
     for apollo_rida in apollo_kavarida:
         apollo_film = apollo_rida.find('h2', class_="list-item-desc-title")
         apollo_kellaaeg = apollo_rida.find("div", class_="btn-group")
@@ -80,10 +84,12 @@ def apollo_aeg_film(apollo_src):
             if apollo_kell == "Tähestikuline":
                 a = 0
             else:
-                print(apollo_kell, ":" , apollo_filminimi)
+                valjund += apollo_kell + ":" + apollo_filminimi + "\n"
         except:
             break
-    print("\n")
+
+    tekstikast_asenda(valjund)
+
 apollo_src = requests.get("https://www.apollokino.ee/?TheatreArea=1014&SetHome=1").text
 
 def apollo():
@@ -94,7 +100,8 @@ def lounakeskus_aeg_film(lounakeskus_src):
     lounakeskus_kinokava = BeautifulSoup(lounakeskus_src, 'lxml')
     lounakeskus_kavarida = lounakeskus_kinokava.find_all('div', class_="panel-body")
 
-    print("Kino Apollo Lõunakeskuse tänane kinokava on: ")
+    valjund = "Kino Apollo Lõunakeskuse tänane kinokava on:\n"
+
     for lounakeskus_rida in lounakeskus_kavarida:
         lounakeskus_film = lounakeskus_rida.find('h2', class_="list-item-desc-title")
         lounakeskus_kellaaeg = lounakeskus_rida.find("div", class_="btn-group")
@@ -105,10 +112,11 @@ def lounakeskus_aeg_film(lounakeskus_src):
             if lounakeskus_kell == "Tähestikuline":
                 a = 0
             else:
-                print(lounakeskus_kell, ":" , lounakeskus_filminimi)
+                valjund += lounakeskus_kell + ":" + lounakeskus_filminimi + "\n"
         except:
             break
-    print("\n")
+
+    tekstikast_asenda(valjund)
 
 lounakeskus_src = requests.get("https://www.apollokino.ee/?TheatreArea=1011&SetHome=1").text
 
@@ -130,7 +138,9 @@ def lounakeskus():
 #        print(a,":",film, "(Ekraan)")
 #
 
-
+def tekstikast_asenda(tekst):
+    tekstikast.delete("1.0", END)
+    tekstikast.insert(END, tekst)
 
 # GUI w/tkinter
 
@@ -139,10 +149,12 @@ aken = Tk()
 silt = Label(text="Tartu tänane kinokava")
 silt.pack(side=TOP, fill=X)
 
+tekstikast = ScrolledText(aken)
+tekstikast.pack(fill=BOTH, side=TOP, expand=True)
+
 menüü = Frame(aken)
 
 cinamon = Button(menüü, text="Cinamoni kinokava", command=cinamon)
-cinamonkava = Label(menüü, text=cinamon)
 cinamon.pack(side=LEFT)
 
 ekraan = Button(menüü, text="Ekraani kinokava", command=ekraan)
